@@ -18,6 +18,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] float yRotation = 0f;
     [SerializeField] float yAngle = 22f;
     [SerializeField] float rotateSpeed = 1f;
+    [SerializeField] int invertY = -1;
     [SerializeField] Vector3 rotationDelta;
     [SerializeField] Quaternion newRotation;
 
