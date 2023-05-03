@@ -15,6 +15,7 @@ public class OptionsScript : MonoBehaviour
     private TextMeshProUGUI sensitivityText;
     private Selectable invertYToggle;
     private CameraFollow camFollow;
+    private AudioSource gameAudio;
      
     void Awake() {
         pauseMenu = GameObject.Find("PauseMenu");
@@ -25,11 +26,12 @@ public class OptionsScript : MonoBehaviour
         sensitivityText = GameObject.Find("LookSensitivityText").GetComponent<TextMeshProUGUI>();
         //invertYToggle = GameObject.Find("InvertY").GetComponent<>();
         camFollow = GameObject.FindWithTag("Dolly").GetComponent<CameraFollow>();
+        gameAudio = GameObject.Find("GameManager").GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
     void Start() {
-        mainVolumeSlider.value = PlayerPrefs.GetFloat("mainVolume", 1f);
+        mainVolumeSlider.value = 0.6f; //PlayerPrefs.GetFloat("mainVolume", 0.6f);
         mainVolumeText.text = (Mathf.Round(mainVolumeSlider.value * 100)).ToString();
         sensitivitySlider.value = 0.3f; //PlayerPrefs.GetFloat("sensitivity", 0.3f);
         sensitivityText.text = (Mathf.Round(sensitivitySlider.value * 100)).ToString();
@@ -45,6 +47,7 @@ public class OptionsScript : MonoBehaviour
 
     public void Volume() {
         PlayerPrefs.SetFloat("mainVolume", mainVolumeSlider.value);
+        gameAudio.volume = mainVolumeSlider.value;
         PlayerPrefs.SetFloat("sensitivity", sensitivitySlider.value);
     }
 }
