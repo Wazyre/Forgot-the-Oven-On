@@ -36,15 +36,31 @@ public class CameraFollow : MonoBehaviour
         yRotation += rotationDelta.y;
         xRotation += rotationDelta.x;
         yRotation = Mathf.Repeat(yRotation, 360);
-        xRotation = Mathf.Clamp(xRotation, -maxAngle, minAngle);
 
-        newRotation = Quaternion.Euler(-xRotation, yRotation, 0);
+        if (invertY == -1) {
+            xRotation = Mathf.Clamp(xRotation, -maxAngle, minAngle);
+        }
+        else {
+            xRotation = Mathf.Clamp(xRotation, -minAngle, maxAngle);
+        }
+        //xRotation = Mathf.Clamp(xRotation, -maxAngle, minAngle);
+
+        newRotation = Quaternion.Euler(invertY * xRotation, yRotation, 0);
     }
 
     // Update is called once per frame
     void FixedUpdate() {
         transform.position = player.position;
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, rotationInterpolationFactor);
+    }
+
+    public void FlipInvertY() {
+        if (invertY == -1) {
+            invertY = 1;
+        }
+        else {
+            invertY = -1;
+        }
     }
 
     public void SetSensitivity(float value) {

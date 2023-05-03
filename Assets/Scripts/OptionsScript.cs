@@ -13,6 +13,7 @@ public class OptionsScript : MonoBehaviour
     private TextMeshProUGUI mainVolumeText;
     private Slider sensitivitySlider;
     private TextMeshProUGUI sensitivityText;
+    private Selectable invertYToggle;
     private CameraFollow camFollow;
      
     void Awake() {
@@ -22,6 +23,7 @@ public class OptionsScript : MonoBehaviour
         mainVolumeText = GameObject.Find("MainVolumeText").GetComponent<TextMeshProUGUI>();
         sensitivitySlider = GameObject.Find("LookSensitivitySlider").GetComponent<Slider>();
         sensitivityText = GameObject.Find("LookSensitivityText").GetComponent<TextMeshProUGUI>();
+        //invertYToggle = GameObject.Find("InvertY").GetComponent<>();
         camFollow = GameObject.FindWithTag("Dolly").GetComponent<CameraFollow>();
     }
 
