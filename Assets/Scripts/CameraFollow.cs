@@ -45,4 +45,8 @@ public class CameraFollow : MonoBehaviour
         transform.position = player.position;
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, rotationInterpolationFactor);
     }
+
+    public void SetSensitivity(float value) {
+        sensitivity = value;
+    }
 }
