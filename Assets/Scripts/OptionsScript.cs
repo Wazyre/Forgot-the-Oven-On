@@ -42,12 +42,20 @@ public class OptionsScript : MonoBehaviour
     void Update() {
         mainVolumeText.text = (Mathf.Round(mainVolumeSlider.value * 100)).ToString();
         sensitivityText.text = (Mathf.Round(sensitivitySlider.value * 100)).ToString();
-        camFollow.SetSensitivity(sensitivitySlider.value);
     }
 
     public void Volume() {
         PlayerPrefs.SetFloat("mainVolume", mainVolumeSlider.value);
         gameAudio.volume = mainVolumeSlider.value;
+        
+    }
+    
+    public void Sensitivity() {
         PlayerPrefs.SetFloat("sensitivity", sensitivitySlider.value);
+        camFollow.SetSensitivity(sensitivitySlider.value);
+    }
+
+    public void Resolution() {
+        
     }
 }

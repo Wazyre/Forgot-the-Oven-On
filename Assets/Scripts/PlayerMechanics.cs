@@ -54,10 +54,10 @@ public class PlayerMechanics : MonoBehaviour
     // [SerializeField] InputAction moveAction;
     // [SerializeField] InputAction jumpAction;
     // [SerializeField] InputAction swingAction;
-    private PausingScript pauseMenu;
+    [SerializeField] Menu menuScript;
 
     void Awake() {
-        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PausingScript>();
+        menuScript = GameObject.FindWithTag("GameManager").GetComponent<Menu>();
         actions = new PlayerActions();
         actions.Gameplay.Jump.performed += OnJump;
         actions.Gameplay.Swing.started += OnSwingPress;
@@ -138,13 +138,13 @@ public class PlayerMechanics : MonoBehaviour
 
     void OnPause(InputAction.CallbackContext context) {
         Debug.Log("Gotit");
-        pauseMenu.PauseGame();
+        menuScript.PauseGame();
     }
 
     void OnResume(InputAction.CallbackContext context) {
         Debug.Log("yippee");
         PlayerPrefs.Save();
-        pauseMenu.ResumeGame();
+        menuScript.ResumeGame();
     }
 
     void FixedUpdate()
