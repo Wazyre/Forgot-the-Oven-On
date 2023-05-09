@@ -25,7 +25,7 @@ public class PlayerMechanics : MonoBehaviour
     
     [Header("Swinging")]
     [SerializeField] float distanceFromPoint;
-    [SerializeField] float maxSwingDistance = 25f;
+    [SerializeField] float maxSwingDistance = 30f;
     [SerializeField] float minSwingJointDistanceMod = 0.25f;
     [SerializeField] float maxSwingJointDistanceMod = 0.8f;
     [SerializeField] float spring = 4.5f;
@@ -49,6 +49,7 @@ public class PlayerMechanics : MonoBehaviour
     [SerializeField] LayerMask swingable;
     [SerializeField] LineRenderer lr;
     [SerializeField] PlayerActions actions;
+    [SerializeField] ParticleSystem speedLines;
 
     // [Header("Input Actions")]
     // [SerializeField] InputAction moveAction;
@@ -105,10 +106,33 @@ public class PlayerMechanics : MonoBehaviour
     void OnSwingPress(InputAction.CallbackContext context) {
         //Debug.Log("Swing Press");
 
+        // RaycastHit hitSwing;
+        // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // if (Physics.Raycast(ray, out hitSwing, maxSwingDistance)) {
+        //     swingPoint = hitSwing.point;
+        //     joint = gameObject.AddComponent<SpringJoint>();
+        //     joint.autoConfigureConnectedAnchor = false;
+        //     joint.connectedAnchor = swingPoint;
+
+        //     distanceFromPoint = Vector3.Distance(transform.position, swingPoint);
+        //     joint.maxDistance = distanceFromPoint * maxSwingJointDistanceMod;
+        //     joint.minDistance = distanceFromPoint * minSwingJointDistanceMod;
+
+        //     joint.spring = spring;
+        //     joint.damper = damper;
+        //     joint.massScale = massScale;
+
+        //     lr.positionCount = 2;
+        //     currentGrapplePosition = transform.position;
+        // }
+
+        //BETA SWING
         RaycastHit hitSwing;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hitSwing, maxSwingDistance)) {
-            swingPoint = hitSwing.point;
+        RaycastHit[] hits = Physics.BoxCastAll(transform.position + (maxSwingDistance / 2), new Vector3(maxSwingDistance / 2,
+        maxSwingDistance / 2, maxSwingDistance / 2), transform.forward, transform.rotation);
+
+        if (hits.length != 0) {
+            swingPoint = hits[0].point;
             joint = gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;
             joint.connectedAnchor = swingPoint;
@@ -124,6 +148,7 @@ public class PlayerMechanics : MonoBehaviour
             lr.positionCount = 2;
             currentGrapplePosition = transform.position;
         }
+        
     }
 
     void OnSwingPerformed() {
@@ -165,6 +190,13 @@ public class PlayerMechanics : MonoBehaviour
         // }
         if (rb.velocity.y < 0) {
             rb.AddForce(Vector3.down * fallingSpeed, ForceMode.Acceleration);
+        }
+
+        if (rb.velocity.x > 15f || rb.velocity.z > 15) {
+            speedLines.Play();
+        }
+        else {
+            speedLines.Stop();
         }
 
         CheckIsGrounded();

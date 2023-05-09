@@ -17,4 +17,12 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+
+    void Update() {
+        if (LevelManager.current && !Menu.GamePaused) {
+            if (LevelManager.current.time > 0) {
+                LevelManager.current.time -= Time.deltaTime;
+            }
+        }
+    }
 }

@@ -26,7 +26,8 @@ public class Menu : MonoBehaviour
 
     [Header("Trackers")]
     [SerializeField] bool optionsMenuOpen = false;
-    [SerializeField] bool gamePaused = false;
+    
+    public static bool GamePaused = false;
      
     void Awake() {
         pauseMenu = GameObject.FindWithTag("PauseMenu");
@@ -63,10 +64,10 @@ public class Menu : MonoBehaviour
     }
 
     public void PauseMenu() {
-        gamePaused = !gamePaused;
+        GamePaused = !GamePaused;
         UpdateCursor();
-        pauseMenu.SetActive(gamePaused);
-        Time.timeScale = gamePaused ? 0 : 1;
+        pauseMenu.SetActive(GamePaused);
+        Time.timeScale = GamePaused ? 0 : 1;
     }
 
     public void OptionsMenu() {
@@ -101,7 +102,7 @@ public class Menu : MonoBehaviour
     }
 
     void UpdateCursor () {
-        if (gamePaused) {
+        if (GamePaused) {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         } 

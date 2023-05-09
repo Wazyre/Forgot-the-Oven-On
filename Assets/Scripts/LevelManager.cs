@@ -13,8 +13,9 @@ public class LevelManager //Is started by Main Menu or when game is started
 
     public LevelManager() {
         time = 0;
+        difficulty = 0;
     }
-
+    
     public TimeReset() {
         time = 0;
     }
