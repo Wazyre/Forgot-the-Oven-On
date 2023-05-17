@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class CameraFollow : MonoBehaviour
 {
     [Header("Follow")]
-    [SerializeField] float movementInterpolationSpeed = 0.05f;
     [SerializeField] float rotationInterpolationFactor = 0.2f;
     [SerializeField] Transform player;
 
@@ -16,28 +15,29 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] float minAngle = 30f;
     [SerializeField] float xRotation = 16f;
     [SerializeField] float yRotation = 0f;
-    [SerializeField] float yAngle = 22f;
-    [SerializeField] float rotateSpeed = 1f;
-    [SerializeField] int invertY = -1;
+    //[SerializeField] float yAngle = 22f;
+    //[SerializeField] float rotateSpeed = 1f;
+    //[SerializeField] int invertY = -1;
     [SerializeField] Vector3 rotationDelta;
     [SerializeField] Quaternion newRotation;
+    [SerializeField] Menu menu;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
-        //offset = player.position - transform.position;
+        menu = GameObject.FindWithTag("GameManager").GetComponent<Menu>();
     }
 
     // Grabs input and rotates camera
     void OnLook(InputValue value) {
-        rotationDelta.y = value.Get<Vector2>().x * sensitivity;
-        rotationDelta.x = value.Get<Vector2>().y * sensitivity;
+        rotationDelta.y = value.Get<Vector2>().x * menu.sensitivity;
+        rotationDelta.x = value.Get<Vector2>().y * menu.sensitivity;
         yRotation += rotationDelta.y;
         xRotation += rotationDelta.x;
         yRotation = Mathf.Repeat(yRotation, 360);
 
-        if (invertY == -1) {
+        if (!menu.invertY) {
             xRotation = Mathf.Clamp(xRotation, -maxAngle, minAngle);
         }
         else {
@@ -45,7 +45,7 @@ public class CameraFollow : MonoBehaviour
         }
         //xRotation = Mathf.Clamp(xRotation, -maxAngle, minAngle);
 
-        newRotation = Quaternion.Euler(invertY * xRotation, yRotation, 0);
+        newRotation = Quaternion.Euler((menu.invertY ? 1 : -1) * xRotation, yRotation, 0);
     }
 
     // Update is called once per frame
@@ -54,16 +54,11 @@ public class CameraFollow : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, rotationInterpolationFactor);
     }
 
-    public void FlipInvertY() {
-        if (invertY == -1) {
-            invertY = 1;
-        }
-        else {
-            invertY = -1;
-        }
-    }
+    // public void FlipInvertY() {
+    //     invertY *= -1;
+    // }
 
-    public void SetSensitivity(float value) {
-        sensitivity = value;
-    }
+    // public void SetSensitivity(float value) {
+    //     sensitivity = value;
+    // }
 }
