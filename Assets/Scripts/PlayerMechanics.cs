@@ -272,7 +272,7 @@ public class PlayerMechanics : MonoBehaviour
             //SceneManager.LoadScene(LevelManager.current.sceneID);
         }
         else if (other.tag == "Checkpoint") {
-            checkMgr.UpdateCheckpoint(other.gameObject);
+            //checkMgr.UpdateCheckpoint(other.gameObject);
         }
         else if(other.gameObject.name == "JumpCol") {
             menu.ControlFadeIn("Jump");

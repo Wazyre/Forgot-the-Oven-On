@@ -1069,9 +1069,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1296613346}
     - target: {fileID: 5986533426001344861, guid: 1c54dd1e3a8205d4383130b1343473b2, type: 3}
+      propertyPath: menu
+      value: 
+      objectReference: {fileID: 1800018167}
+    - target: {fileID: 5986533426001344861, guid: 1c54dd1e3a8205d4383130b1343473b2, type: 3}
       propertyPath: speed
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 5986533426001344861, guid: 1c54dd1e3a8205d4383130b1343473b2, type: 3}
+      propertyPath: checkMgr
+      value: 
+      objectReference: {fileID: 563671312}
     - target: {fileID: 5986533426001344861, guid: 1c54dd1e3a8205d4383130b1343473b2, type: 3}
       propertyPath: inAirSpeed
       value: 20
