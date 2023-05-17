@@ -32,6 +32,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Menu menu;
     [SerializeField] AudioSource gameAudio0;
     [SerializeField] AudioSource gameAudio1;
+    [SerializeField] bool optionsMenuOpen = false;
 
     void Awake() {
         diffTitle.gameObject.SetActive(false);
@@ -69,7 +70,7 @@ public class MainMenu : MonoBehaviour
             SaveLoad.NewGame(0);
             LevelManager.current.isSceneBeingLoaded = true;
             gameCanvas.SetActive(true);
-            menu.BlkScreenFadeInOut(1f);
+            //menu.BlkScreenFadeInOut(1f);
             SceneManager.LoadScene(1); // First Level
             gameAudio0.Stop();
             gameAudio1.Play();
@@ -77,6 +78,7 @@ public class MainMenu : MonoBehaviour
     }
 
     public void OptionsMenu() {
+        optionsMenuOpen = true;
         title.gameObject.SetActive(false);
         newGameBtn.gameObject.SetActive(false);
         continueBtn.gameObject.SetActive(false);
@@ -87,7 +89,19 @@ public class MainMenu : MonoBehaviour
     }
 
     public void ReturnToMain() {
-        menu.OptionsMenu();
+        diffTitle.gameObject.SetActive(false);
+        easyImage.gameObject.SetActive(false);
+        easyText.gameObject.SetActive(false);
+        normalImage.gameObject.SetActive(false);
+        normalText.gameObject.SetActive(false);
+        hardImage.gameObject.SetActive(false);
+        hardText.gameObject.SetActive(false);
+
+        if (optionsMenuOpen) {
+            optionsMenuOpen = false;
+            menu.OptionsMenu();
+        }
+        
         title.gameObject.SetActive(true);
         newGameBtn.gameObject.SetActive(true);
         continueBtn.gameObject.SetActive(true);

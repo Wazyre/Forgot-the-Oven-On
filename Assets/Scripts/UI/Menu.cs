@@ -170,7 +170,7 @@ public class Menu : MonoBehaviour
         if (LevelManager.current != null) {
             LevelManager.current.TimeReset();
         }
-        BlkScreenFadeInOut(0.5f);
+        //BlkScreenFadeInOut(0.5f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         gameOverText.gameObject.SetActive(false);
         restartBtn.gameObject.SetActive(false);

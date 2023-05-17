@@ -266,7 +266,7 @@ public class PlayerMechanics : MonoBehaviour
     void OnTriggerEnter(Collider other) {
         Debug.Log("here");
         if (other.tag == "Kill") {
-            menu.BlkScreenFadeInOut(0.5f);
+            //menu.BlkScreenFadeInOut(0.5f);
             //DEBUG
             SceneManager.LoadScene(1);
             //SceneManager.LoadScene(LevelManager.current.sceneID);
