@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bd68e5bd12fc27648a9ccf77d6d4e9a0, type: 2}
+  - {fileID: 2100000, guid: 38b189583761d9541bafe61d1b2ab6ed, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -375,6 +375,7 @@ MonoBehaviour:
   fallingSpeed: 15
   jumpTimer: 0
   jumpAngle: 75
+  inAirSpeed: 10
   distanceFromPoint: 0
   maxSwingDistance: 25
   minSwingJointDistanceMod: 0
@@ -400,7 +401,8 @@ MonoBehaviour:
     m_Bits: 256
   lr: {fileID: 5986533426001344866}
   speedLines: {fileID: 0}
-  menuScript: {fileID: 0}
+  menu: {fileID: 0}
+  checkMgr: {fileID: 0}
 --- !u!114 &5986533426001344860
 MonoBehaviour:
   m_ObjectHideFlags: 0
