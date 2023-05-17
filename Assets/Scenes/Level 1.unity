@@ -3108,10 +3108,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dolly
       objectReference: {fileID: 0}
+    - target: {fileID: 4193673236253994369, guid: e4a8f333e8ff082458ea48a099c32b15, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4193673236253994374, guid: e4a8f333e8ff082458ea48a099c32b15, type: 3}
       propertyPath: menu
       value: 
       objectReference: {fileID: 1800018167}
+    - target: {fileID: 4193673236253994374, guid: e4a8f333e8ff082458ea48a099c32b15, type: 3}
+      propertyPath: mechs
+      value: 
+      objectReference: {fileID: 1740049424}
     - target: {fileID: 4193673236253994374, guid: e4a8f333e8ff082458ea48a099c32b15, type: 3}
       propertyPath: player
       value: 
@@ -3976,6 +3984,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8656c8a32818bd546897fe8f8cab3635, type: 3}
+--- !u!114 &1740049424 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5986533426001344861, guid: 1c54dd1e3a8205d4383130b1343473b2, type: 3}
+  m_PrefabInstance: {fileID: 474607791}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7152200373fe864eaa91793fd187544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1771669125
 PrefabInstance:
   m_ObjectHideFlags: 0

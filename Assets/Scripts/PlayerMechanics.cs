@@ -50,7 +50,7 @@ public class PlayerMechanics : MonoBehaviour
     [SerializeField] LayerMask groundMask;
     [SerializeField] LayerMask swingable;
     [SerializeField] LineRenderer lr;
-    [SerializeField] PlayerActions actions;
+    public PlayerActions actions;
     [SerializeField] ParticleSystem speedLines;
     [SerializeField] Menu menu;
     [SerializeField] CheckpointManager checkMgr;

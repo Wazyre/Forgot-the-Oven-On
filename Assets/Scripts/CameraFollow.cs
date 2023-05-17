@@ -21,6 +21,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] Vector3 rotationDelta;
     [SerializeField] Quaternion newRotation;
     [SerializeField] Menu menu;
+    [SerializeField] PlayerMechanics mechs;
 
     // Start is called before the first frame update
     void Start()
@@ -30,9 +31,12 @@ public class CameraFollow : MonoBehaviour
     }
 
     // Grabs input and rotates camera
-    void OnLook(InputValue value) {
-        rotationDelta.y = value.Get<Vector2>().x * menu.sensitivity;
-        rotationDelta.x = value.Get<Vector2>().y * menu.sensitivity;
+    // void OnLook(InputValue value) {
+        
+    // }
+    void Update() {
+        rotationDelta.y = mechs.actions.Gameplay.Look.ReadValue<Vector2>().x * menu.sensitivity;//value.Get<Vector2>().x * menu.sensitivity;
+        rotationDelta.x = mechs.actions.Gameplay.Look.ReadValue<Vector2>().y * menu.sensitivity;//value.Get<Vector2>().y * menu.sensitivity;
         yRotation += rotationDelta.y;
         xRotation += rotationDelta.x;
         yRotation = Mathf.Repeat(yRotation, 360);
