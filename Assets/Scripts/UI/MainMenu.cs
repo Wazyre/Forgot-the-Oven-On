@@ -70,7 +70,7 @@ public class MainMenu : MonoBehaviour
             SaveLoad.NewGame(0);
             LevelManager.current.isSceneBeingLoaded = true;
             gameCanvas.SetActive(true);
-            //menu.BlkScreenFadeInOut(1f);
+            menu.BlkScreenFadeInOut(1f);
             SceneManager.LoadScene(1); // First Level
             gameAudio0.Stop();
             gameAudio1.Play();

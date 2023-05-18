@@ -208,24 +208,26 @@ public class Menu : MonoBehaviour
     }
 
     public void ControlFadeIn(string control) {
+        Debug.Log("test1");
         if (control == "Jump") {
-            fade.FadeTextToFullAlpha(0.5f, jumpText);
+            Debug.Log("test2");
+            StartCoroutine(fade.FadeTextToFullAlpha(0.5f, jumpText));
         }
         else {
-            fade.FadeTextToFullAlpha(0.5f, swingText);
+            StartCoroutine(fade.FadeTextToFullAlpha(0.5f, swingText));
         }
     }
 
     public void ControlFadeOut(string control) {
         if (control == "Jump") {
-            fade.FadeTextToZeroAlpha(0.5f, jumpText);
+            StartCoroutine(fade.FadeTextToZeroAlpha(0.5f, jumpText));
         }
         else {
-            fade.FadeTextToZeroAlpha(0.5f, swingText);
+            StartCoroutine(fade.FadeTextToZeroAlpha(0.5f, swingText));
         }
     }
 
     public void BlkScreenFadeInOut(float t) {
-        fade.FadeImageInOut(0.5f, 0.5f, blackScreen, t);
+        StartCoroutine(fade.FadeImageInOut(0.5f, 0.5f, blackScreen, t));
     }
 }

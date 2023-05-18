@@ -11,6 +11,8 @@ TagManager:
   - OptionsMenu
   - GameManager
   - Checkpoint
+  - jumpControl
+  - swingControl
   layers:
   - Default
   - TransparentFX

@@ -105,7 +105,7 @@ public class PlayerMechanics : MonoBehaviour
         if (menu.freeAim) {
             RaycastHit hitSwing;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hitSwing, maxSwingDistance)) {
+            if (Physics.Raycast(ray, out hitSwing, maxSwingDistance, swingable)) {
                 swingPoint = hitSwing.point;
                 joint = gameObject.AddComponent<SpringJoint>();
                 joint.autoConfigureConnectedAnchor = false;
@@ -143,7 +143,7 @@ public class PlayerMechanics : MonoBehaviour
                 //     Debug.Log(col.gameObject.name);
                 // }
                 // Debug.DrawRay(transform.position, cols[0].transform.position - transform.position, Color.red, maxSwingDistance);
-                Physics.Raycast(transform.position, cols[0].transform.position - transform.position, out hitSwing, maxSwingDistance);
+                Physics.Raycast(transform.position, cols[0].transform.position - transform.position, out hitSwing, maxSwingDistance, swingable);
                 
                 swingPoint = hitSwing.point;
                 joint = gameObject.AddComponent<SpringJoint>();
@@ -266,7 +266,7 @@ public class PlayerMechanics : MonoBehaviour
     void OnTriggerEnter(Collider other) {
         Debug.Log("here");
         if (other.tag == "Kill") {
-            //menu.BlkScreenFadeInOut(0.5f);
+            menu.BlkScreenFadeInOut(0.5f);
             //DEBUG
             SceneManager.LoadScene(1);
             //SceneManager.LoadScene(LevelManager.current.sceneID);
@@ -275,6 +275,7 @@ public class PlayerMechanics : MonoBehaviour
             //checkMgr.UpdateCheckpoint(other.gameObject);
         }
         else if(other.gameObject.name == "JumpCol") {
+            Debug.Log("test");
             menu.ControlFadeIn("Jump");
         }
         else if(other.gameObject.name == "SwingCol") {

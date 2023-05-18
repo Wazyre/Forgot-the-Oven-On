@@ -3868,7 +3868,7 @@ GameObject:
   - component: {fileID: 1651253130}
   m_Layer: 0
   m_Name: JumpCol
-  m_TagString: Untagged
+  m_TagString: jumpControl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4623,7 +4623,7 @@ GameObject:
   - component: {fileID: 1994999646}
   m_Layer: 0
   m_Name: SwingCol
-  m_TagString: Untagged
+  m_TagString: swingControl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
