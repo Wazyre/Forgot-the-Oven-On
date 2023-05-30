@@ -84,6 +84,17 @@ Shader "Unlit/SmearCopy"
 			v.vertex = mul(unity_WorldToObject, worldPos);
 		}
 
+		void frag(Input IN, inout SurfaceOutputStandard o) {
+			// Albedo comes from a texture tinted by color
+			fixed4 c = tex2D(_BaseMap, IN.uv_MainTex) * _BaseColor;
+			o.Albedo = c.rgb;
+
+			// Metallic and smoothness come from slider variables
+			//o.Metallic = _Metallic;
+			o.Smoothness = _Smoothness;
+			o.Alpha = c.a;
+		}
+
 		// void surf(Input IN, inout SurfaceOutputStandard o) {
 		// 	// Albedo comes from a texture tinted by color
 		// 	fixed4 c = tex2D(_BaseMap, IN.uv_MainTex) * _BaseColor;

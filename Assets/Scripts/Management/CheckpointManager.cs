@@ -21,28 +21,26 @@ public class CheckpointManager : MonoBehaviour
             LevelManager.current.lastCheckpoint = 0;
     }
 
-    public bool UpdateCheckpoint(GameObject newCP)
-    {
+    public void UpdateCheckpoint(GameObject newCP) {
         try
         {
-            currIndex = checkpoints.IndexOf(newCP);
-
-            LevelManager.current.lastCheckpoint = currIndex;
-            return true;
+            LevelManager.current.lastCheckpoint = checkpoints.IndexOf(newCP);
         }
         catch
         {
-            return false;
+            return;
         }
     }
 
-    public GameObject GetLastCheckpoint()
-    {
-        return checkpoints[currIndex];
+    public Vector3 GetLastCheckpointPos() {
+        return checkpoints[LevelManager.current.lastCheckpoint].transform.position;
     }
 
-    public GameObject GetIndexedCheckpoint(int index)
-    {
+    public GameObject GetLastCheckpoint() {
+        return checkpoints[LevelManager.current.lastCheckpoint];
+    }
+
+    public GameObject GetIndexedCheckpoint(int index) {
         return checkpoints[index];
     }
 }

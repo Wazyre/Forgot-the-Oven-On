@@ -6,6 +6,7 @@ public class EnemyShot : MonoBehaviour
 {
     [Header("Shot Locations")]
     [SerializeField] float power = 30f;
+    [SerializeField] float hitTIme = 3f; // Time between shot appearing and hitting
     [SerializeField] LineRenderer lr;
     [SerializeField] Rigidbody rb;
 
@@ -27,6 +28,13 @@ public class EnemyShot : MonoBehaviour
         lr.SetPosition(0, ray.origin);
         
         Physics.Raycast(ray, out hit);
+        lr.SetPosition(1, ray.origin);
+
+        for (float t = 0; t < hitTime; t += Time.deltaTime) {
+            Vector3 newPos = Vector3.Lerp(ray.origin, hit.point, t / hitTime);
+            lr.SetPosition(1, newPos);
+        }
+
         lr.SetPosition(1, hit.point);
 
         Vector2 dir = (transform.position - hit.point).normalized; 

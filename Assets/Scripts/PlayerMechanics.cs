@@ -165,6 +165,44 @@ public class PlayerMechanics : MonoBehaviour
                 isSwinging = true;
             }
         }
+        // DELTA SWING
+
+        // RaycastHit hitSwing;
+        // Vector3 newForward = cam.forward;
+        // newForward.y = 0;
+        // newForward.Normalize();
+
+        // Quaternion newRotation = Quaternion.AngleAxis(cam.eulerAngles.y, Vector3.up);
+
+        // // Forward Casts
+        // for (float i = 0; i < 0.5f, i += 0.1f) {
+        //     Physics.SphereCast(transform.position, 0.05f, newForward, out hit, maxSwingDistance, swingable);
+
+        //     if (hitSwing) {
+        //         swingPoint = hitSwing.point;
+        //         joint = gameObject.AddComponent<SpringJoint>();
+        //         joint.autoConfigureConnectedAnchor = false;
+        //         joint.connectedAnchor = swingPoint;
+
+        //         distanceFromPoint = Vector3.Distance(transform.position, swingPoint);
+        //         joint.maxDistance = distanceFromPoint * maxSwingJointDistanceMod;
+        //         joint.minDistance = distanceFromPoint * minSwingJointDistanceMod;
+
+        //         joint.spring = spring;
+        //         joint.damper = damper;
+        //         joint.massScale = massScale;
+        //         joint.connectedMassScale = massScale;
+
+        //         lr.positionCount = 2;
+        //         currentGrapplePosition = transform.position;
+
+        //         isSwinging = true;
+        //         return;
+        //     }
+        // }
+        // Above Casts
+
+        // Side Casts
         
     }
 
@@ -264,15 +302,16 @@ public class PlayerMechanics : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        Debug.Log("here");
         if (other.tag == "Kill") {
             menu.BlkScreenFadeInOut(0.5f);
+            Vector3 newPos = checkMgr.GetLastCheckpointPos();
+            transform.position = newPos;
             //DEBUG
-            SceneManager.LoadScene(1);
+            //SceneManager.LoadScene(1);
             //SceneManager.LoadScene(LevelManager.current.sceneID);
         }
         else if (other.tag == "Checkpoint") {
-            //checkMgr.UpdateCheckpoint(other.gameObject);
+            checkMgr.UpdateCheckpoint(other.gameObject);
         }
         else if(other.gameObject.name == "JumpCol") {
             Debug.Log("test");

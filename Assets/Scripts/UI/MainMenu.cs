@@ -148,6 +148,6 @@ public class MainMenu : MonoBehaviour
 
     public void LeaveButton(GameObject btn) {
         btn.transform.localScale = new Vector2(1f, 1f);
-        btn.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color32(203, 203, 203, 255);
+        btn.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(0f, 0f, 0f, 1f); //new Color32(203, 203, 203, 255);
     }
 }

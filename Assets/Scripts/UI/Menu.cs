@@ -26,6 +26,7 @@ public class Menu : MonoBehaviour
     [SerializeField] TextMeshProUGUI gameOverText;
     [SerializeField] TextMeshProUGUI winText;
     [SerializeField] Button restartBtn;
+    [SerializeField] Button nextBtn;
 
     [Header("UI Variables")] 
     [SerializeField] float mainVolume;
@@ -177,20 +178,30 @@ public class Menu : MonoBehaviour
         PauseMenu();
     }
 
+    public void NextLevel() {
+        LevelManager.current.TimeReset();
+        SaveLoad.Save(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
     public void Quit() {
         Application.Quit();
     }
 
     public void GameOver() {
         Time.timeScale = 0;
-        GamePaused = !GamePaused;
+        GamePaused = true;
         UpdateCursor();
         gameOverText.gameObject.SetActive(true);
         restartBtn.gameObject.SetActive(true);
     }
 
     public void Win() {
-
+        Time.timeScale = 0;
+        GamePaused = true;
+        UpdateCursor();
+        winText.gameObject.SetActive(true);
+        nextBtn.gameObject.SetActive(true);
     }
 
     public void HoverButton(GameObject btn) {
