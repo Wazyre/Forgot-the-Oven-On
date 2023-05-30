@@ -4582,7 +4582,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Nice Job!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f39a36f8321572c4699c7f5b4fbfb4d8, type: 2}
   m_sharedMaterial: {fileID: -233840466347263008, guid: f39a36f8321572c4699c7f5b4fbfb4d8, type: 2}
@@ -5633,7 +5633,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -56.380737, y: 0, z: 0, w: 0}
+  m_margin: {x: -82.03076, y: 0, z: 0, w: -37.355164}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
