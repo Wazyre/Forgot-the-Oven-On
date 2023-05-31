@@ -315,7 +315,6 @@ public class PlayerMechanics : MonoBehaviour
             checkMgr.UpdateCheckpoint(other.gameObject);
         }
         else if(other.gameObject.name == "JumpCol") {
-            Debug.Log("test");
             menu.ControlFadeIn("Jump");
         }
         else if(other.gameObject.name == "SwingCol") {
