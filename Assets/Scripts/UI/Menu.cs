@@ -180,8 +180,17 @@ public class Menu : MonoBehaviour
 
     public void NextLevel() {
         LevelManager.current.TimeReset();
-        SaveLoad.Save(1);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        int index = SceneManager.GetActiveScene().buildIndex;
+        SaveLoad.Save(index);
+        if (index < 3) {
+            SceneManager.LoadScene(index + 1);
+            winText.gameObject.SetActive(false);
+            nextBtn.gameObject.SetActive(false);
+            PauseMenu();
+        }
+        else {
+            FinishGame();
+        }
     }
 
     public void Quit() {
@@ -201,7 +210,13 @@ public class Menu : MonoBehaviour
         GamePaused = true;
         UpdateCursor();
         winText.gameObject.SetActive(true);
-        nextBtn.gameObject.SetActive(true);
+        if (SceneManager.GetActiveScene().buildIndex != 3) {
+            nextBtn.gameObject.SetActive(true);
+        }
+    }
+
+    public void FinishGame() {
+
     }
 
     public void HoverButton(GameObject btn) {
@@ -219,22 +234,20 @@ public class Menu : MonoBehaviour
     }
 
     public void ControlFadeIn(string control) {
-        Debug.Log("test1");
         if (control == "Jump") {
-            Debug.Log("test2");
-            StartCoroutine(fade.FadeTextToFullAlpha(0.5f, jumpText));
+            StartCoroutine(fade.FadeTextToFullAlpha(0.25f, jumpText));
         }
         else {
-            StartCoroutine(fade.FadeTextToFullAlpha(0.5f, swingText));
+            StartCoroutine(fade.FadeTextToFullAlpha(0.25f, swingText));
         }
     }
 
     public void ControlFadeOut(string control) {
         if (control == "Jump") {
-            StartCoroutine(fade.FadeTextToZeroAlpha(0.5f, jumpText));
+            StartCoroutine(fade.FadeTextToZeroAlpha(0.25f, jumpText));
         }
         else {
-            StartCoroutine(fade.FadeTextToZeroAlpha(0.5f, swingText));
+            StartCoroutine(fade.FadeTextToZeroAlpha(0.25f, swingText));
         }
     }
 

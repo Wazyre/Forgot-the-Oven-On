@@ -6,7 +6,7 @@ public class EnemyShot : MonoBehaviour
 {
     [Header("Shot Locations")]
     [SerializeField] float power = 30f;
-    [SerializeField] float hitTIme = 3f; // Time between shot appearing and hitting
+    [SerializeField] float hitTime = 3f; // Time between shot appearing and hitting
     [SerializeField] LineRenderer lr;
     [SerializeField] Rigidbody rb;
 

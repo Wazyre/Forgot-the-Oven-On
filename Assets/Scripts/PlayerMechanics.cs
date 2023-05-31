@@ -305,6 +305,7 @@ public class PlayerMechanics : MonoBehaviour
         if (other.tag == "Kill") {
             menu.BlkScreenFadeInOut(0.5f);
             Vector3 newPos = checkMgr.GetLastCheckpointPos();
+            rb.velocity = Vector3.zero;
             transform.position = newPos;
             //DEBUG
             //SceneManager.LoadScene(1);
@@ -319,6 +320,9 @@ public class PlayerMechanics : MonoBehaviour
         }
         else if(other.gameObject.name == "SwingCol") {
             menu.ControlFadeIn("Swing");
+        }
+        else if(other.tag == "WinToggle") {
+            menu.Win();
         }
     }
 

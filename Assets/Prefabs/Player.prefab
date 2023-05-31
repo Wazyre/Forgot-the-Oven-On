@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 5986533426001344868}
   - component: {fileID: 5986533426001344866}
   - component: {fileID: 5986533426001344861}
-  - component: {fileID: 5986533426001344860}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -112,7 +111,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -272,7 +271,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6a1143ee683302f4aa628c052723efc1, type: 2}
+  - {fileID: 2100000, guid: 116e0aaa7c8b791478d55c124e135855, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -302,7 +301,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.16230392
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -314,7 +313,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.49043253, g: 0.9716981, b: 0.49473056, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -338,11 +337,11 @@ LineRenderer:
       atime5: 0
       atime6: 0
       atime7: 0
-      m_Mode: 0
+      m_Mode: 1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 10
-    numCapVertices: 10
+    numCornerVertices: 20
+    numCapVertices: 20
     alignment: 0
     textureMode: 0
     shadowBias: 0.5
@@ -365,7 +364,7 @@ MonoBehaviour:
   vMove: 0
   move: {x: 0, y: 0}
   dir: {x: 0, y: 0, z: 0}
-  speed: 23
+  speed: 100
   currentDrag: 0.05
   maxDrag: 10
   particleAppearSpeed: 45
@@ -375,7 +374,7 @@ MonoBehaviour:
   fallingSpeed: 15
   jumpTimer: 0
   jumpAngle: 75
-  inAirSpeed: 10
+  inAirSpeed: 20
   distanceFromPoint: 0
   maxSwingDistance: 25
   minSwingJointDistanceMod: 0
@@ -403,16 +402,3 @@ MonoBehaviour:
   speedLines: {fileID: 0}
   menu: {fileID: 0}
   checkMgr: {fileID: 0}
---- !u!114 &5986533426001344860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5986533426001344874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2405e571f50e74843a18727e9708642a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _frameLag: 0

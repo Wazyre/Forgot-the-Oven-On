@@ -13,6 +13,7 @@ TagManager:
   - Checkpoint
   - jumpControl
   - swingControl
+  - WinToggle
   layers:
   - Default
   - TransparentFX
