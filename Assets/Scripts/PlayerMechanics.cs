@@ -326,11 +326,14 @@ public class PlayerMechanics : MonoBehaviour
     }
 
     void OnTriggerExit(Collider other) {
-        if(other.gameObject.name == "JumpCol") {
-            menu.ControlFadeOut("Jump");
-        }
-        else if(other.gameObject.name == "SwingCol") {
-            menu.ControlFadeOut("Swing");
+        // if(other.gameObject.name == "JumpCol") {
+        //     menu.ControlFadeOut("Jump");
+        // }
+        // else if(other.gameObject.name == "SwingCol") {
+        //     menu.ControlFadeOut("Swing");
+        // }
+        if(other.gameObject.name == "MoveCol") {
+            menu.ControlFadeOut("Move");
         }
     }
 

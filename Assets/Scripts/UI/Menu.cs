@@ -23,6 +23,7 @@ public class Menu : MonoBehaviour
     [SerializeField] Image blackScreen;
     [SerializeField] TextMeshProUGUI jumpText;
     [SerializeField] TextMeshProUGUI swingText;
+    [SerializeField] TextMeshProUGUI moveText;
     [SerializeField] TextMeshProUGUI gameOverText;
     [SerializeField] TextMeshProUGUI winText;
     [SerializeField] Button restartBtn;
@@ -235,20 +236,21 @@ public class Menu : MonoBehaviour
 
     public void ControlFadeIn(string control) {
         if (control == "Jump") {
-            StartCoroutine(fade.FadeTextToFullAlpha(0.25f, jumpText));
+            StartCoroutine(fade.FadeTextInOut(0.25f, 1f, jumpText, 2f));
         }
         else {
-            StartCoroutine(fade.FadeTextToFullAlpha(0.25f, swingText));
+            StartCoroutine(fade.FadeTextInOut(0.25f, 1f, swingText, 2f));
         }
     }
 
     public void ControlFadeOut(string control) {
-        if (control == "Jump") {
-            StartCoroutine(fade.FadeTextToZeroAlpha(0.25f, jumpText));
-        }
-        else {
-            StartCoroutine(fade.FadeTextToZeroAlpha(0.25f, swingText));
-        }
+        // if (control == "Jump") {
+        //     StartCoroutine(fade.FadeTextToZeroAlpha(1f, jumpText));
+        // }
+        // else {
+        //     StartCoroutine(fade.FadeTextToZeroAlpha(1f, swingText));
+        // }
+        StartCoroutine(fade.FadeTextToZeroAlpha(1f, moveText));
     }
 
     public void BlkScreenFadeInOut(float t) {

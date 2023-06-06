@@ -16,6 +16,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Button quitBtn;
     [SerializeField] Button backBtn;
     [SerializeField] GameObject gameCanvas;
+    [SerializeField] GameObject player;
 
     [Header("Difficulty")]
     [SerializeField] bool easyOn = false;
@@ -29,10 +30,16 @@ public class MainMenu : MonoBehaviour
     [SerializeField] TextMeshProUGUI hardText;
     [SerializeField] TextMeshProUGUI diffTitle;
 
+    [Header("Game Menu UI Elements")]
     [SerializeField] Menu menu;
     [SerializeField] AudioSource gameAudio0;
     [SerializeField] AudioSource gameAudio1;
     [SerializeField] bool optionsMenuOpen = false;
+    [SerializeField] TextMeshProUGUI controls;
+    [SerializeField] TextMeshProUGUI timer;
+    [SerializeField] TextMeshProUGUI jumpText;
+    [SerializeField] TextMeshProUGUI swingText;
+    [SerializeField] TextMeshProUGUI moveText;
 
     void Awake() {
         diffTitle.gameObject.SetActive(false);
@@ -51,6 +58,7 @@ public class MainMenu : MonoBehaviour
         continueBtn.gameObject.SetActive(false);
         optionsBtn.gameObject.SetActive(false);
         quitBtn.gameObject.SetActive(false);
+        player.SetActive(false);
 
         diffTitle.gameObject.SetActive(true);
         easyImage.gameObject.SetActive(true);
@@ -69,8 +77,14 @@ public class MainMenu : MonoBehaviour
         if (LevelManager.current == null) {
             SaveLoad.NewGame(0);
             LevelManager.current.isSceneBeingLoaded = true;
-            gameCanvas.SetActive(true);
+            
             menu.BlkScreenFadeInOut(1f);
+            gameCanvas.SetActive(true);
+            controls.gameObject.SetActive(true);
+            timer.gameObject.SetActive(true);
+            jumpText.gameObject.SetActive(true);
+            swingText.gameObject.SetActive(true);
+            moveText.gameObject.SetActive(true);
             SceneManager.LoadScene(1); // First Level
             gameAudio0.Stop();
             gameAudio1.Play();
@@ -85,6 +99,7 @@ public class MainMenu : MonoBehaviour
         optionsBtn.gameObject.SetActive(false);
         quitBtn.gameObject.SetActive(false);
         backBtn.gameObject.SetActive(true);
+        player.SetActive(false);
         menu.OptionsMenu();
     }
 
@@ -107,6 +122,7 @@ public class MainMenu : MonoBehaviour
         continueBtn.gameObject.SetActive(true);
         optionsBtn.gameObject.SetActive(true);
         quitBtn.gameObject.SetActive(true);
+        player.SetActive(true);
         backBtn.gameObject.SetActive(false);
     }
 
