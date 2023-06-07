@@ -256,4 +256,12 @@ public class Menu : MonoBehaviour
     public void BlkScreenFadeInOut(float t) {
         StartCoroutine(fade.FadeImageInOut(0.5f, 0.5f, blackScreen, t));
     }
+
+    public void BlkScreenFadeIn(float t) {
+        StartCoroutine(fade.FadeImageToFullAlpha(t, blackScreen));
+    }
+
+    public void BlkScreenFadeOut(float t) {
+        StartCoroutine(fade.FadeImageToZeroAlpha(t, blackScreen));
+    }
 }

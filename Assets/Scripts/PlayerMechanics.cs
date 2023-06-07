@@ -11,9 +11,11 @@ public class PlayerMechanics : MonoBehaviour
     [SerializeField] float vMove;
     [SerializeField] Vector2 move;
     [SerializeField] Vector3 dir;
-    [SerializeField] float speed = 23f;
-    [SerializeField] float currentDrag = 0.05f;
-    [SerializeField] float maxDrag = 10f;
+    [SerializeField] float speed = 100f;
+    [SerializeField] float currentAngDrag = 0.05f;
+    [SerializeField] float maxAngDrag = 10f;
+    [SerializeField] float currentDrag = 0f;
+    [SerializeField] float maxDrag = 0.3f;
     [SerializeField] float particleAppearSpeed = 40f;
     [SerializeField] Quaternion viewRotation;
 
@@ -86,7 +88,7 @@ public class PlayerMechanics : MonoBehaviour
         RaycastHit hit;
         bool normalRay = Physics.Raycast(transform.position, Vector3.down, out hit, 0.1f);
 
-        if ((Vector3.Angle(hit.normal, Vector3.up) <= jumpAngle && isGrounded) || isSwinging) {
+        if (Vector3.Angle(hit.normal, Vector3.up) <= jumpAngle && isGrounded) {
             ResetDrag();
 
             AnimationCurve jumpCurve = new AnimationCurve(new Keyframe[] {new Keyframe(0f, 1f), 
@@ -121,6 +123,9 @@ public class PlayerMechanics : MonoBehaviour
 
                 lr.positionCount = 2;
                 currentGrapplePosition = transform.position;
+
+                isSwinging = true;
+                maxAngDrag = 5f;
             }
         }
         
@@ -163,6 +168,7 @@ public class PlayerMechanics : MonoBehaviour
                 currentGrapplePosition = transform.position;
 
                 isSwinging = true;
+                maxAngDrag = 8f;
             }
         }
         // DELTA SWING
@@ -215,6 +221,7 @@ public class PlayerMechanics : MonoBehaviour
         lr.positionCount = 0;
         Destroy(joint);
         isSwinging = false;
+        maxAngDrag = 10f;
     }
 
     void OnPause(InputAction.CallbackContext context) {
@@ -240,18 +247,32 @@ public class PlayerMechanics : MonoBehaviour
         }
         
 
-        if (move.x == 0 && move.y == 0 && currentDrag < maxDrag) {
-            currentDrag += Time.deltaTime;
-            rb.angularDrag = currentDrag;
+        if (move.x == 0 && move.y == 0 && currentAngDrag < maxAngDrag) {
+            currentAngDrag += Time.deltaTime;
+            rb.angularDrag = currentAngDrag;
         }
 
-        if (currentDrag >= maxDrag) {
+        if (currentAngDrag >= maxAngDrag) {
             //rb.velocity = Vector3.zero;
-            rb.angularDrag = maxDrag;
+            rb.angularDrag = maxAngDrag;
         }
 
         if (move.x > 0 || move.y > 0) {
             ResetDrag();
+        }
+
+        if (isSwinging && move.x == 0 && move.y == 0) {
+            if (currentDrag < maxDrag) {
+                currentDrag += Time.deltaTime;
+            rb.drag = currentDrag;
+            }
+            else {
+                rb.drag = maxDrag;
+            }
+        }
+        else {
+            rb.drag = 0f;
+            currentDrag = 0f;
         }
 
         if (rb.velocity.y < 0 && !isSwinging) {
@@ -286,7 +307,7 @@ public class PlayerMechanics : MonoBehaviour
     }
 
     void ResetDrag() {
-        currentDrag = 0.05f;
+        currentAngDrag = 0.05f;
         rb.angularDrag = 0.05f;
     }
 

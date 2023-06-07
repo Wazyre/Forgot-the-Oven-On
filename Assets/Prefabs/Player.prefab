@@ -365,8 +365,10 @@ MonoBehaviour:
   move: {x: 0, y: 0}
   dir: {x: 0, y: 0, z: 0}
   speed: 100
-  currentDrag: 0.05
-  maxDrag: 10
+  currentAngDrag: 0.05
+  maxAngDrag: 10
+  currentDrag: 0
+  maxDrag: 0.3
   particleAppearSpeed: 45
   viewRotation: {x: 0, y: 0, z: 0, w: 0}
   jumpSpeed: 200
