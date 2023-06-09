@@ -25,6 +25,9 @@ public class CheckpointManager : MonoBehaviour
         try
         {
             LevelManager.current.lastCheckpoint = checkpoints.IndexOf(newCP);
+            for (int i = 0; i < newCP.transform.childCount; i++) {
+                newCP.transform.GetChild(i).gameObject.SetActive(true);
+            }
         }
         catch
         {

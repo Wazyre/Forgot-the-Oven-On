@@ -56,6 +56,7 @@ public class PlayerMechanics : MonoBehaviour
     [SerializeField] ParticleSystem speedLines;
     [SerializeField] Menu menu;
     [SerializeField] CheckpointManager checkMgr;
+    [SerializeField] AudioManager audioMgr;
 
     void Awake() {
         menu = GameObject.FindWithTag("GameManager").GetComponent<Menu>();
@@ -126,6 +127,7 @@ public class PlayerMechanics : MonoBehaviour
 
                 isSwinging = true;
                 maxAngDrag = 5f;
+                audioMgr.PlaySwing();
             }
         }
         
@@ -169,6 +171,7 @@ public class PlayerMechanics : MonoBehaviour
 
                 isSwinging = true;
                 maxAngDrag = 8f;
+                audioMgr.PlaySwing();
             }
         }
         // DELTA SWING
@@ -324,16 +327,20 @@ public class PlayerMechanics : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         if (other.tag == "Kill") {
-            menu.BlkScreenFadeInOut(0.5f);
+            menu.BlkScreenFadeIn(0.25f);
             Vector3 newPos = checkMgr.GetLastCheckpointPos();
             rb.velocity = Vector3.zero;
             transform.position = newPos;
+            menu.BlkScreenFadeOut(0.25f);
             //DEBUG
             //SceneManager.LoadScene(1);
             //SceneManager.LoadScene(LevelManager.current.sceneID);
         }
         else if (other.tag == "Checkpoint") {
             checkMgr.UpdateCheckpoint(other.gameObject);
+            if (LevelManager.current.lastCheckpoint != 0) {
+                menu.ControlFadeIn("Checkpoint");
+            }
         }
         else if(other.gameObject.name == "JumpCol") {
             menu.ControlFadeIn("Jump");

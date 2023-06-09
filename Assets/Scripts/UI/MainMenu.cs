@@ -32,8 +32,8 @@ public class MainMenu : MonoBehaviour
 
     [Header("Game Menu UI Elements")]
     [SerializeField] Menu menu;
-    [SerializeField] AudioSource gameAudio0;
-    [SerializeField] AudioSource gameAudio1;
+    [SerializeField] AudioManager audioMgr;
+    // [SerializeField] AudioSource gameAudio1;
     [SerializeField] bool optionsMenuOpen = false;
     [SerializeField] TextMeshProUGUI controls;
     [SerializeField] TextMeshProUGUI timer;
@@ -50,6 +50,11 @@ public class MainMenu : MonoBehaviour
         hardImage.gameObject.SetActive(false);
         hardText.gameObject.SetActive(false);
         backBtn.gameObject.SetActive(false);
+        timer.gameObject.SetActive(false);
+    }
+
+    void Start() {
+        audioMgr.AudioSwitch(0);
     }
 
     public void NewGame() {
@@ -78,16 +83,18 @@ public class MainMenu : MonoBehaviour
             SaveLoad.NewGame(0);
             LevelManager.current.isSceneBeingLoaded = true;
             
-            menu.BlkScreenFadeInOut(1f);
+            // menu.BlkScreenFadeIn(1f);
             gameCanvas.SetActive(true);
             controls.gameObject.SetActive(true);
             timer.gameObject.SetActive(true);
             jumpText.gameObject.SetActive(true);
             swingText.gameObject.SetActive(true);
             moveText.gameObject.SetActive(true);
-            SceneManager.LoadScene(1); // First Level
-            gameAudio0.Stop();
-            gameAudio1.Play();
+            // SceneManager.LoadScene(1); // First Level
+            audioMgr.AudioSwitch(1);
+            GameManager.Singleton.newScene(1);
+            // menu.BlkScreenFadeOut(1f);
+            Debug.Log("ere");
         }
     }
 

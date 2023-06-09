@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Singleton;
-
+    public Fade fade;
+    public Image blackScreen;
     private void Awake() {
         if (Singleton) {
             gameObject.SetActive(false);
@@ -24,5 +27,31 @@ public class GameManager : MonoBehaviour
                 LevelManager.current.time -= Time.deltaTime;
             }
         }
+    }
+
+    public void newScene(int sceneNumber) {
+        //StartCoroutine(fade.FadeImageToFullAlpha(0.5f, blackScreen));
+        SceneManager.LoadScene(sceneNumber);
+ 
+        if (SceneManager.GetActiveScene().buildIndex != sceneNumber) {
+            StartCoroutine("waitForSceneLoad", sceneNumber);
+        }
+        else {
+            StartCoroutine(fade.FadeImageToZeroAlpha(0.5f, blackScreen));
+        }
+   }
+ 
+    IEnumerator waitForSceneLoad(int sceneNumber) {
+        while (SceneManager.GetActiveScene().buildIndex != sceneNumber) {
+            yield return fade.FadeImageToFullAlpha(0.5f, blackScreen);
+        }
+ 
+        // Do anything after proper scene has been loaded
+         if (SceneManager.GetActiveScene().buildIndex == sceneNumber) {
+            // Debug.Log(SceneManager.GetActiveScene().buildIndex);
+            
+            yield return fade.FadeImageToZeroAlpha(0.5f, blackScreen);
+        }
+        // currentScene = sceneNumber;
     }
 }

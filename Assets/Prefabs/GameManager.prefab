@@ -483,7 +483,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8123510075036861269
 RectTransform:
   m_ObjectHideFlags: 0
@@ -532,7 +532,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Checkpoint
+  m_text: Checkpoint!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f39a36f8321572c4699c7f5b4fbfb4d8, type: 2}
   m_sharedMaterial: {fileID: -233840466347263008, guid: f39a36f8321572c4699c7f5b4fbfb4d8, type: 2}
@@ -542,7 +542,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2772,7 +2772,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3890701655988495104}
-  - component: {fileID: 3890701655988495118}
   - component: {fileID: 3890701655988495119}
   - component: {fileID: 3890701655988495117}
   - component: {fileID: 7603758317709816032}
@@ -2802,102 +2801,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &3890701655988495118
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3890701655988495105}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 79be7856457b70c41b670ea4e5f3d857, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.6
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &3890701655988495119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2910,6 +2813,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf6bd01431872d49aab2d158fd661b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fade: {fileID: 7603758317709816032}
+  blackScreen: {fileID: 4532839998735652294}
 --- !u!114 &3890701655988495117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2937,6 +2842,7 @@ MonoBehaviour:
   jumpText: {fileID: 5081040906935173225}
   swingText: {fileID: 1134612293649998740}
   moveText: {fileID: 3521656421938840940}
+  cpText: {fileID: 6865881518309693898}
   gameOverText: {fileID: 2882151521898222538}
   winText: {fileID: 8389285045013904430}
   restartBtn: {fileID: 1498746302549121227}
@@ -2948,8 +2854,9 @@ MonoBehaviour:
   freeAim: 0
   invertY: 0
   optionsMenuOpen: 0
-  gameAudio: {fileID: 3890701655988495118}
+  gameAudio: {fileID: 0}
   fade: {fileID: 7603758317709816032}
+  audioMgr: {fileID: 0}
 --- !u!114 &7603758317709816032
 MonoBehaviour:
   m_ObjectHideFlags: 0

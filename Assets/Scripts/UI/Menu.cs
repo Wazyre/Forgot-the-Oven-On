@@ -24,6 +24,7 @@ public class Menu : MonoBehaviour
     [SerializeField] TextMeshProUGUI jumpText;
     [SerializeField] TextMeshProUGUI swingText;
     [SerializeField] TextMeshProUGUI moveText;
+    [SerializeField] TextMeshProUGUI cpText;
     [SerializeField] TextMeshProUGUI gameOverText;
     [SerializeField] TextMeshProUGUI winText;
     [SerializeField] Button restartBtn;
@@ -44,6 +45,7 @@ public class Menu : MonoBehaviour
     [Header("Other Objects")]
     [SerializeField] AudioSource gameAudio;
     [SerializeField] Fade fade;
+    [SerializeField] AudioManager audioMgr;
     //[SerializeField] CameraFollow camFollow;
     
     public static bool GamePaused = false;
@@ -173,10 +175,13 @@ public class Menu : MonoBehaviour
             LevelManager.current.TimeReset();
         }
         //BlkScreenFadeInOut(0.5f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // BlkScreenFadeIn(0.5f);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.Singleton.newScene(SceneManager.GetActiveScene().buildIndex);
         gameOverText.gameObject.SetActive(false);
         restartBtn.gameObject.SetActive(false);
         PauseMenu();
+        // BlkScreenFadeOut(0.5f);
     }
 
     public void NextLevel() {
@@ -184,13 +189,13 @@ public class Menu : MonoBehaviour
         int index = SceneManager.GetActiveScene().buildIndex;
         SaveLoad.Save(index);
         if (index < 3) {
-            SceneManager.LoadScene(index + 1);
+            BlkScreenFadeIn(0.5f);
+            audioMgr.AudioSwitch(index + 1);
             winText.gameObject.SetActive(false);
             nextBtn.gameObject.SetActive(false);
+            SceneManager.LoadScene(index + 1);
             PauseMenu();
-        }
-        else {
-            FinishGame();
+            BlkScreenFadeOut(0.5f);
         }
     }
 
@@ -210,9 +215,13 @@ public class Menu : MonoBehaviour
         Time.timeScale = 0;
         GamePaused = true;
         UpdateCursor();
-        winText.gameObject.SetActive(true);
+        
         if (SceneManager.GetActiveScene().buildIndex != 3) {
+            winText.gameObject.SetActive(true);
             nextBtn.gameObject.SetActive(true);
+        }
+        else {
+            FinishGame();
         }
     }
 
@@ -237,6 +246,9 @@ public class Menu : MonoBehaviour
     public void ControlFadeIn(string control) {
         if (control == "Jump") {
             StartCoroutine(fade.FadeTextInOut(0.25f, 1f, jumpText, 2f));
+        }
+        else if (control == "Checkpoint") {
+            StartCoroutine(fade.FadeTextInOut(0.25f, 0.5f, cpText, 1f));
         }
         else {
             StartCoroutine(fade.FadeTextInOut(0.25f, 1f, swingText, 2f));

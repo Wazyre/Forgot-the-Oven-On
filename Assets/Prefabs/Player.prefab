@@ -378,7 +378,7 @@ MonoBehaviour:
   jumpAngle: 75
   inAirSpeed: 20
   distanceFromPoint: 0
-  maxSwingDistance: 25
+  maxSwingDistance: 30
   minSwingJointDistanceMod: 0
   maxSwingJointDistanceMod: 0.8
   spring: 20
@@ -404,3 +404,4 @@ MonoBehaviour:
   speedLines: {fileID: 0}
   menu: {fileID: 0}
   checkMgr: {fileID: 0}
+  audioMgr: {fileID: 0}

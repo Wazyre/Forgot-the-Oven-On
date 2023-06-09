@@ -16,6 +16,13 @@ public class AudioManager : MonoBehaviour
 
     AudioMixer mixer;
 
+    [Header("Audio Sources")]
+    [SerializeField] AudioSource[] audiosMain;
+    [SerializeField] AudioSource[] audios1;
+    [SerializeField] AudioSource[] audios2;
+    [SerializeField] AudioSource[] audios3;
+    [SerializeField] AudioSource swingAudio;
+
     void Awake() {
         if (!Singleton) {
             Singleton = this;
@@ -43,5 +50,82 @@ public class AudioManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void AudioSwitch(int level) {
+        switch (level) {
+            case 0: 
+                foreach (AudioSource audio in audiosMain) {
+                    audio.Play();
+                }
+                foreach (AudioSource audio in audios1) {
+                    audio.Stop();
+                }
+                foreach (AudioSource audio in audios2) {
+                    audio.Stop();
+                }
+                foreach (AudioSource audio in audios3) {
+                    audio.Stop();
+                }
+                // swingAudio.Stop();
+                break;
+            case 1:
+                foreach (AudioSource audio in audiosMain) {
+                    audio.Stop();
+                }
+                foreach (AudioSource audio in audios1) {
+                    audio.Play();
+                }
+                // swingAudio.Play();
+                // foreach (AudioSource audio in audios2) {
+                //     audio.Stop();
+                // }
+                // foreach (AudioSource audio in audios3) {
+                //     audio.Stop();
+                // }
+                break;
+            case 2:
+                foreach (AudioSource audio in audiosMain) {
+                    audio.Stop();
+                }
+                foreach (AudioSource audio in audios1) {
+                    audio.Stop();
+                }
+                foreach (AudioSource audio in audios2) {
+                    audio.Play();
+                }
+                // swingAudio.Play();
+                // foreach (AudioSource audio in audios3) {
+                //     audio.Stop();
+                // }
+                break;
+            case 3:
+                foreach (AudioSource audio in audiosMain) {
+                    audio.Stop();
+                }
+                // foreach (AudioSource audio in audios1) {
+                //     audio.Stop();
+                // }
+                foreach (AudioSource audio in audios2) {
+                    audio.Stop();
+                }
+                foreach (AudioSource audio in audios3) {
+                    audio.Play();
+                }
+                // swingAudio.Play();
+                break;
+        }       
+    }
+
+    public void PlaySwing() {
+        swingAudio.Play();
+    }
+
+    // Useful foreach things like UI Sliders in a settings menu
+    public void SetSFXVolume(float volume) {
+        SFXVolume = volume;
+    }
+    public void SetAmbienceVolume(float volume) {
+        AmbienceVolume = volume;
     }
 }

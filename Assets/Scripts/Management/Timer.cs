@@ -17,6 +17,8 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (LevelManager.current == null) {return;}
+
         int min = Mathf.FloorToInt(LevelManager.current.time / 60);
         int sec = Mathf.FloorToInt((LevelManager.current.time % 60));
         timer.text = string.Format("Timer {0:00}:{1:00}", min, sec);
