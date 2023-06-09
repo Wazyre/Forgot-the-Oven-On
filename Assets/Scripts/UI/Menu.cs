@@ -198,6 +198,7 @@ public class Menu : MonoBehaviour
     public void NextLevel() {
         LevelManager.current.TimeReset();
         int index = SceneManager.GetActiveScene().buildIndex;
+        audioMgr.StopZoom();
         //SaveLoad.Save(index);
         if (index < 3) {
             //BlkScreenFadeIn(0.5f);

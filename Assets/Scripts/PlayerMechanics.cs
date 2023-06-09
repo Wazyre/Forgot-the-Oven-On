@@ -85,6 +85,9 @@ public class PlayerMechanics : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         lr = GetComponent<LineRenderer>();
         speedLines = GameObject.Find("SpeedLines").GetComponent<ParticleSystem>();
+        speedLines.Stop();
+        audioMgr.StopZoom();
+        speedPlaying = false;
     }
 
     // Only jump if the angle of the surface is not steeper than the required angle
