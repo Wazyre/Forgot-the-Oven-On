@@ -268,6 +268,17 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""9625ef66-ba90-47c7-aa23-3a14fd310197"",
+                    ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""4c70a39f-b2e3-4d73-b792-7c90047a2fda"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
