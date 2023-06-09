@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Singleton;
-    public Fade fade;
-    public Image blackScreen;
+    public static GameManager Singleton = null;
+    public AudioManager audioMgr;
+    // public Image blackScreen;
+
     private void Awake() {
         if (Singleton) {
             gameObject.SetActive(false);
@@ -36,22 +37,23 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex != sceneNumber) {
             StartCoroutine("waitForSceneLoad", sceneNumber);
         }
-        else {
-            StartCoroutine(fade.FadeImageToZeroAlpha(0.5f, blackScreen));
-        }
+        // else {
+        //     StartCoroutine(fade.FadeImageToZeroAlpha(0.5f, blackScreen));
+        // }
    }
  
     IEnumerator waitForSceneLoad(int sceneNumber) {
         while (SceneManager.GetActiveScene().buildIndex != sceneNumber) {
-            yield return fade.FadeImageToFullAlpha(0.5f, blackScreen);
+            //yield return fade.FadeImageToFullAlpha(0.5f, blackScreen);
+            yield return null;
         }
  
-        // Do anything after proper scene has been loaded
+        // After proper scene has been loaded
          if (SceneManager.GetActiveScene().buildIndex == sceneNumber) {
             // Debug.Log(SceneManager.GetActiveScene().buildIndex);
-            
-            yield return fade.FadeImageToZeroAlpha(0.5f, blackScreen);
+            audioMgr.AudioSwitch(sceneNumber);
+            //yield return fade.FadeImageToZeroAlpha(0.5f, blackScreen);
+            yield return null;
         }
-        // currentScene = sceneNumber;
     }
 }

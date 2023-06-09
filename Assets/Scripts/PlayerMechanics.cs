@@ -44,6 +44,7 @@ public class PlayerMechanics : MonoBehaviour
     [SerializeField] bool isJumping;
     [SerializeField] bool isSwinging;
     [SerializeField] bool isGrounded;
+    [SerializeField] bool speedPlaying = false;
 
     [Header("Components")]
     [SerializeField] Transform cam;
@@ -57,7 +58,7 @@ public class PlayerMechanics : MonoBehaviour
     [SerializeField] Menu menu;
     [SerializeField] CheckpointManager checkMgr;
     [SerializeField] AudioManager audioMgr;
-
+    
     void Awake() {
         menu = GameObject.FindWithTag("GameManager").GetComponent<Menu>();
         actions = new PlayerActions();
@@ -74,6 +75,8 @@ public class PlayerMechanics : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        audioMgr = AudioManager.Singleton.GetComponent<AudioManager>();
+        menu = GameManager.Singleton.GetComponent<Menu>();
         Cursor.lockState = CursorLockMode.Locked;
         cam = GameObject.FindWithTag("MainCamera").transform;
         groundCollider = GetComponent<Collider>();
@@ -229,16 +232,23 @@ public class PlayerMechanics : MonoBehaviour
 
     void OnPause(InputAction.CallbackContext context) {
         menu.PauseMenu();
+        OnDisable();
     }
 
     void OnResume(InputAction.CallbackContext context) {
         menu.PauseMenu();
+        if (Cursor.lockState == CursorLockMode.Locked) {
+            OnEnable();
+        }
     }
 
     void Update() {
         move = actions.Gameplay.Move.ReadValue<Vector2>();
         viewRotation = Quaternion.AngleAxis(cam.rotation.eulerAngles.y, Vector3.up);
         dir = viewRotation * new Vector3(Mathf.Clamp(move.x * 2, -1, 1), 0, Mathf.Clamp(move.y * 2, -1, 1));
+        if (Cursor.lockState == CursorLockMode.Locked) {
+            OnEnable();
+        }
     }
     
     void FixedUpdate() {
@@ -284,10 +294,16 @@ public class PlayerMechanics : MonoBehaviour
 
         if (Mathf.Abs(rb.velocity.x) > particleAppearSpeed || Mathf.Abs(rb.velocity.y) > particleAppearSpeed
         || Mathf.Abs(rb.velocity.z) > particleAppearSpeed) {
-            speedLines.Play();
+            if (!speedPlaying) {
+                speedLines.Play();
+                audioMgr.PlayZoom();
+                speedPlaying = true;
+            }
         }
-        else {
+        else if (speedPlaying){
             speedLines.Stop();
+            audioMgr.StopZoom();
+            speedPlaying = false;
         }
 
         CheckIsGrounded();
@@ -327,11 +343,11 @@ public class PlayerMechanics : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         if (other.tag == "Kill") {
-            menu.BlkScreenFadeIn(0.25f);
+            //menu.BlkScreenFadeIn(0.25f);
             Vector3 newPos = checkMgr.GetLastCheckpointPos();
             rb.velocity = Vector3.zero;
             transform.position = newPos;
-            menu.BlkScreenFadeOut(0.25f);
+            //menu.BlkScreenFadeOut(0.25f);
             //DEBUG
             //SceneManager.LoadScene(1);
             //SceneManager.LoadScene(LevelManager.current.sceneID);

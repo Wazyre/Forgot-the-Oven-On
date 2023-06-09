@@ -8,13 +8,13 @@ public class AudioManager : MonoBehaviour
     // public static Dictionary<string, AudioMixerGroup> SoundTypes = new Dictionary<string, AudioMixerGroup>() { { Statics.AmbienceMixerGroupName, null }, { Statics.SFXMixerGroupName, null } };
 
     public static AudioManager Singleton = null;
-    public static Queue<AudioSource> sourcePool = new Queue<AudioSource>();
-    [Range (0, 1)]
-    public static float AmbienceVolume = 1f;
-    [Range (0, 1)]
-    public static float SFXVolume = 1f;
+    // public static Queue<AudioSource> sourcePool = new Queue<AudioSource>();
+    // [Range (0, 1)]
+    // public static float AmbienceVolume = 1f;
+    // [Range (0, 1)]
+    // public static float SFXVolume = 1f;
 
-    AudioMixer mixer;
+    // AudioMixer mixer;
 
     [Header("Audio Sources")]
     [SerializeField] AudioSource[] audiosMain;
@@ -22,6 +22,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource[] audios2;
     [SerializeField] AudioSource[] audios3;
     [SerializeField] AudioSource swingAudio;
+    [SerializeField] AudioSource zoomAudio;
 
     void Awake() {
         if (!Singleton) {
@@ -32,12 +33,12 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        // ambienceVolume = PlayerPrefs.GetFloat(Statics.AmbienceVolumePlayerPrefName, 1);
-        // SFXVolume = PlayerPrefs.GetFloat(Statics.SFXVolumePlayerPrefName, 1);
+    //     // ambienceVolume = PlayerPrefs.GetFloat(Statics.AmbienceVolumePlayerPrefName, 1);
+    //     // SFXVolume = PlayerPrefs.GetFloat(Statics.SFXVolumePlayerPrefName, 1);
 
-        // mixer = Resources.Load(Statics.MasterMixerName) as AudioMixer;
-        // SoundTypes[Statics.AmbienceMixerGroupName] = mixer.FindMatchingGroups(Statics.AmbienceMixerGroupName)[0];
-        // SoundTypes[Statics.SFXMixerGroupName] = mixer.FindMatchingGroups(Statics.SFXMixerGroupName)[0];
+    //     // mixer = Resources.Load(Statics.MasterMixerName) as AudioMixer;
+    //     // SoundTypes[Statics.AmbienceMixerGroupName] = mixer.FindMatchingGroups(Statics.AmbienceMixerGroupName)[0];
+    //     // SoundTypes[Statics.SFXMixerGroupName] = mixer.FindMatchingGroups(Statics.SFXMixerGroupName)[0];
     }
 
     // Start is called before the first frame update
@@ -121,11 +122,36 @@ public class AudioManager : MonoBehaviour
         swingAudio.Play();
     }
 
-    // Useful foreach things like UI Sliders in a settings menu
-    public void SetSFXVolume(float volume) {
-        SFXVolume = volume;
+    public void PlayZoom() {
+        zoomAudio.Play();
     }
-    public void SetAmbienceVolume(float volume) {
-        AmbienceVolume = volume;
+
+    public void StopZoom() {
+        zoomAudio.Stop();
+    }
+
+    // Useful foreach things like UI Sliders in a settings menu
+    // public void SetSFXVolume(float volume) {
+    //     SFXVolume = volume;
+    // }
+    // public void SetAmbienceVolume(float volume) {
+    //     AmbienceVolume = volume;
+    // }
+
+    public void SetVolume(float volume) {
+        foreach (AudioSource audio in audiosMain) {
+            audio.volume = volume / 10f;
+        }
+        foreach (AudioSource audio in audios1) {
+            audio.volume = volume / 10f;
+        }
+        foreach (AudioSource audio in audios2) {
+            audio.volume = volume / 10f;
+        }
+        foreach (AudioSource audio in audios3) {
+            audio.volume = volume / 10f;
+        }
+        swingAudio.volume = volume / 2f;
+        zoomAudio.volume = volume;
     }
 }

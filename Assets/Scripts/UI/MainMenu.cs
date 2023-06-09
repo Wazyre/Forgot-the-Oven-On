@@ -40,6 +40,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] TextMeshProUGUI jumpText;
     [SerializeField] TextMeshProUGUI swingText;
     [SerializeField] TextMeshProUGUI moveText;
+    [SerializeField] TextMeshProUGUI checkpointText;
 
     void Awake() {
         diffTitle.gameObject.SetActive(false);
@@ -90,8 +91,9 @@ public class MainMenu : MonoBehaviour
             jumpText.gameObject.SetActive(true);
             swingText.gameObject.SetActive(true);
             moveText.gameObject.SetActive(true);
+            checkpointText.gameObject.SetActive(true);
             // SceneManager.LoadScene(1); // First Level
-            audioMgr.AudioSwitch(1);
+            //audioMgr.AudioSwitch(1);
             GameManager.Singleton.newScene(1);
             // menu.BlkScreenFadeOut(1f);
             Debug.Log("ere");

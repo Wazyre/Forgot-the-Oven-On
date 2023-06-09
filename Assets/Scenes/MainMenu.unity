@@ -904,6 +904,17 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &449525198 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6865881518309693898, guid: af1ddda424e902049b0acd553a58c042, type: 3}
+  m_PrefabInstance: {fileID: 1524745536}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &722047740
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,6 +1416,7 @@ MonoBehaviour:
   jumpText: {fileID: 6087537}
   swingText: {fileID: 1955881317}
   moveText: {fileID: 1734049321}
+  checkpointText: {fileID: 449525198}
 --- !u!1 &1315379025
 GameObject:
   m_ObjectHideFlags: 0
@@ -2199,6 +2211,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2311832906246741545, guid: af1ddda424e902049b0acd553a58c042, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3089243912810272990, guid: af1ddda424e902049b0acd553a58c042, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2272,6 +2288,10 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 3890701655988495117, guid: af1ddda424e902049b0acd553a58c042, type: 3}
+      propertyPath: audioMgr
+      value: 
+      objectReference: {fileID: 1498489085}
+    - target: {fileID: 3890701655988495119, guid: af1ddda424e902049b0acd553a58c042, type: 3}
       propertyPath: audioMgr
       value: 
       objectReference: {fileID: 1498489085}
